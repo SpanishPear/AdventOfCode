@@ -25,7 +25,15 @@ def partTwo():
     with open('input.txt') as f:
         contents = f.read()
     
-    patterns = [r'byr:(\d{4})(?: |\n)', r'iyr:(\d{4})(?: |\n)', r'eyr:(\d{4})(?: |\n)', r'hgt:(\d+)(cm|in){1}(?: |\n)', r'hcl:(#[0-9a-f]{6})(?: |\n)', r'ecl:(amb|blu|brn|gry|grn|hzl|oth){1}(?: |\n)', r'pid:(\d{9})(?: |\n)']
+    patterns = [
+        r'byr:(\d{4})(?: |\n)', 
+        r'iyr:(\d{4})(?: |\n)', 
+        r'eyr:(\d{4})(?: |\n)', 
+        r'hgt:(\d+)(cm|in){1}(?: |\n)', 
+        r'hcl:(#[0-9a-f]{6})(?: |\n)', 
+        r'ecl:(amb|blu|brn|gry|grn|hzl|oth){1}(?: |\n)', 
+        r'pid:(\d{9})(?: |\n)'
+    ]
 
     valid = 0
     
