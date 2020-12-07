@@ -1,5 +1,5 @@
 import fileinput
-
+import this
 
 # A contains B --> ("A", "B")
 import pprint
