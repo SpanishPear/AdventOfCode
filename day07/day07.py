@@ -1,5 +1,4 @@
 import fileinput
-import this
 
 # A contains B --> ("A", "B")
 import pprint
@@ -101,7 +100,7 @@ def partOne():
         if (start_node == 'shiny gold'): continue
         if g.find_path(start_node, 'shiny gold'):
             counter += 1
-            print(f'exists path from {start_node} to shiny')
+            # print(f'exists path from {start_node} to shiny')
 
 
     print(counter)
@@ -111,7 +110,7 @@ totalSum = 0
 def partTwo():
     g = initGraphFromInput()
     pretty_print = pprint.PrettyPrinter()
-    pretty_print.pprint(g._graph)
+    # pretty_print.pprint(g._graph)
 
     toLeaf(g._graph, g._graph, 'shiny gold', 1)
     print(totalSum)
@@ -120,19 +119,19 @@ def partTwo():
 def toLeaf(g, parent, root, multiplier):
     global totalSum
 
-    print(f'\n-------- parent: {"g" if parent == g else parent}, root: {root}, sum:{totalSum} --------')
+    # print(f'\n-------- parent: {"g" if parent == g else parent}, root: {root}, sum:{totalSum} --------')
     if g[root] == {}:
-        print(f'returning {parent[root]}')
+        # print(f'returning {parent[root]}')
         return parent[root] 
     
-    print(f'at root: {root}')
+    # print(f'at root: {root}')
     for value in g[root]:
         additionToSum =  multiplier * toLeaf(g, g[root], value, multiplier * g[root][value])
         totalSum += additionToSum
-        print(f'adding: {additionToSum}')
+        # print(f'adding: {additionToSum}')
     
     
-    print(f'returning node val of {parent[root]}')
+    # print(f'returning node val of {parent[root]}')
     return parent[root]
         
     
