@@ -37,6 +37,7 @@ def partTwo():
 
     valid = 0
     
+    # would be smarter to split each item on its separator (' ' or '\n')
     for item in contents.split('\n\n'):
         item += ' '
         found = []
