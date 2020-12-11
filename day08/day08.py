@@ -9,28 +9,41 @@ inputArr = [line.strip() for line in fileinput.input()]
 # jmp [-+]<int>  - jump to instruction relative to itself. jmp +2 skips one instruction, executes the next one. NOT jump over 2. 
 # nop [-+]<int>  - does nothing
 
+class cpu():
+    def __init__(self, instructions):
+        self.PC = 0
+        self.acc = 0
+        self.visited = []
+        self.terminated = False
+        self.instructions = instructions
+
+    def run(self):
+        while self.PC < len(self.instructions) and self.PC not in self.visited:
+            item = self.instructions[self.PC]
+            self.visited.append(self.PC)
+            instr, value = item.split()
+            value = int(value)
+            if instr == "acc":
+                self.acc += value
+                self.PC += 1
+            elif instr == "nop":
+                self.PC += 1
+            elif instr == "jmp":
+                self.PC += value
+
+        # print(self.PC, len(self.instructions))
+        self.terminated = self.PC == len(self.instructions)
+
+    def status(self):
+        return (self.terminated, self.acc)
+
+
+
+
 def partOne(instructions):
-    programCounter = 0
-    accumulator = 0
-    visitedInstructions = set()
-
-    while programCounter < len(instructions) and programCounter not in visitedInstructions:
-        item = instructions[programCounter]
-        visitedInstructions.add(programCounter)
-        instr, value = item.split()
-        value = int(value)
-        print('\t\t', instr, value)
-        if instr == "acc":
-            accumulator += value
-            programCounter += 1
-        elif instr == "nop":
-            programCounter += 1
-        elif instr == "jmp":
-            programCounter += value
-
-    print(f'\tfinishing at {programCounter} ')
-    return (programCounter == len(instructions), accumulator)
-
+    myCpu = cpu(instructions)
+    myCpu.run()
+    print(myCpu.acc)
 
 def partTwo():
     for i, item in enumerate(inputArr):
@@ -40,10 +53,10 @@ def partTwo():
             newInstrSet = copy.deepcopy(inputArr)
             newInstr = "jmp" if instr == "nop" else "nop"
             newInstrSet[i] = f'{newInstr} {value}' 
-            print('\n',newInstrSet)
             
-            finished, acc = partOne(newInstrSet)
-            if finished: return acc
+            myCpu = cpu(newInstrSet)
+            myCpu.run()
+            if myCpu.terminated: return myCpu.acc
 
-print(partOne(inputArr)[1])
+partOne(inputArr)
 print(partTwo())
