@@ -27,8 +27,8 @@ Advent of Code 2020
   - [x] Part 1
   - [x] part 2
 - Day 9
-  - [ ] Part 1
-  - [ ] part 2
+  - [x] Part 1
+  - [x] part 2
 - Day 10
   - [ ] Part 1
   - [ ] part 2
